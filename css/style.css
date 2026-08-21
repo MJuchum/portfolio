@@ -57,13 +57,6 @@ h2{
     text-decoration: none;
 }
 
-.white{
-    color: #167cea;
-    background: white;
-    padding: 8px;
-    text-decoration: none;
-}
-
 /*
 ****** CONTENT ******
 */
@@ -125,3 +118,7 @@ a:hover{
     background: #ffffff;
     color: #167cea;
 }
+
+/*
+****** FORMULÁRIO EM CONTATO.HTML ******
+*/
