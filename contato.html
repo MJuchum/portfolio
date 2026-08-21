@@ -21,7 +21,7 @@
             <a href="home.html">Quem Sou</a>
             <a href="formacao.html">Formação</a>
             <a href="portfolio.html">Portfolio</a>
-            <a href="contato.html"><span class="white">Contato</span></a>
+            <a href="contato.html">Contato</a>
         </div>
 
     </div>
@@ -44,17 +44,50 @@
                 <h2>Envia uma mensagem</h2>
                 <!--
                 formulário com campos 
-                -> Nome
-                -> e-mail 
-                -> mensagem 
-                (validação obrigatória em JS 
-                e simulação do envio).
-                -->>...
-                <form action="Digite seu nome"></form>
-            </div>
-                <!--fechamento janela -->
-        
-        
+                -> Nome (texto)
+                -> e-mail (email)
+                -> mensagem (texto com area de texto)
+                -->
+                <form id="meuFormulario">
+                    <label for="nomeForm">Nome:</label><br>
+                    <input type="text" id="nomeForm" required>
+                    <br><br>
+                    <label for="email">E-mail:</label><br>
+                    <input type="email" id="email" required>
+                    <br><br> 
+                    <label for="feedback">Feedback:</label><br>
+                    <textarea id="feedback" required></textarea>
+
+                    <button type="button" id="botaoEnviar">Enviar Mensagem</button>
+                </form>
+
+                <p id="avisoMsg"></p>
+
+                <script>
+                    const botao = document.getElementById('botaoEnviar');
+                    const statusMsg = document.getElementById('mensagemStatus');
+
+                    // Criar constante -> buscar valores em input
+                    botao.addEventListener("click", function() {
+                        const nomeForm = document.getElementById("nomeForm").value;
+                        const email = document.getElementById("email").value;
+                        const feedback = document.getElementById("feedback").value;
+
+                        // Se (campo Nome falso OU campo email falso OU campo feedback falso entao: aviso para preencher os campos)
+                        if (!nomeForm || !email || !feedback) { 
+                            avisoMsg.textContent = "Por favor, preencha todos os campos acima.";
+                            avisoMsg.style.color = "red";
+                            return;
+                        }
+
+                        // Caso todos campos tenham sido preenchidos apenas mensagem de sucesso, simulando envio.
+                        avisoMsg.textContent = `Obrigado, ${nomeForm}! Um email foi enviado para Maurício.`;
+                        avisoMsg.style.color = "blue";
+
+                        // Limpa os dados inseridos nos campos do formulário
+                        document.getElementById("meuFormulario").reset();
+                });
+                </script>
         
         </div>
         <div id="footer">
