@@ -87,11 +87,6 @@ h2{
     display: block;
 }
 
-.img-post{
-    width: 620px;
-    
-}
-
 /*
 ****** FORMATAÇÃO DOS LINKS ******
 */
@@ -120,5 +115,23 @@ a:hover{
 }
 
 /*
-****** FORMULÁRIO EM CONTATO.HTML ******
+****** TEMA ESCURO -> MUDANÇAS ******
 */
+body.dark-mode {
+    background-color: #252525;
+    color: #ffffff;
+}
+
+body.dark-mode #header {
+    background-color: #000e4f;
+}
+
+body.dark-mode h1{
+    color: #167cea;
+}
+
+body.dark-mode p,
+body.dark-mode ul,
+body.dark-mode label{
+    color: #252525;
+}
