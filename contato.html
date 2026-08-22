@@ -13,15 +13,18 @@
 
     <div id="header">
 
+        <!-- botão para mudar o tema, com emoji para declarar se dia ou noite-->
+        <button id="alternar" onclick="alternarTema()">☀️</button>
+
         <div id="nome">
             <h1>Maurício Luís Juchum</h1>
         </div>
     
         <div id="menu">
-            <a href="https://mjuchum.github.io/portfolio/index.html">Quem Sou</a>
-            <a href="https://mjuchum.github.io/portfolio/formacao.html">Formação</a>
-            <a href="https://mjuchum.github.io/portfolio/portfolio.html">Portfolio</a>
-            <a href="https://mjuchum.github.io/portfolio/contato.html">Contato</a>
+            <a href="index.html">Quem Sou</a>
+            <a href="formacao.html">Formação</a>
+            <a href="portfolio.html">Portfolio</a>
+            <a href="contato.html">Contato</a>
         </div>
 
     </div>
@@ -56,8 +59,8 @@
                     <input type="email" id="email" required>
                     <br><br> 
                     <label for="feedback">Feedback:</label><br>
-                    <textarea id="feedback" required></textarea>
-
+                    <textarea id="feedback" required rows="6"></textarea>
+                    <br>
                     <button type="button" id="botaoEnviar">Enviar Mensagem</button>
                 </form>
 
@@ -79,6 +82,14 @@
                             avisoMsg.style.color = "red";
                             return;
                         }
+                        
+                        // uso de regex para controlar "patern" de email
+                        const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                        if (!regexEmail.test(email)) {
+                            avisoMsg.textContent = "E-mail inválido, por favor insira um email válido (exemplo@dominio.com).";
+                            avisoMsg.style.color = "purple";
+                            return;
+                        }
 
                         // Caso todos campos tenham sido preenchidos apenas mensagem de sucesso, simulando envio.
                         avisoMsg.textContent = `Obrigado, ${nomeForm}! Um email foi enviado para Maurício.`;
@@ -87,6 +98,33 @@
                         // Limpa os dados inseridos nos campos do formulário
                         document.getElementById("meuFormulario").reset();
                 });
+
+                        // script para o mudar o tema abaixo
+                        function alternarTema() {
+                        const body = document.body;
+                        const botao = document.getElementById("alternar");
+                        
+                        // Alterna a classe do tema escuro
+                        body.classList.toggle("dark-mode");
+                        
+                        // Alterna o ícone do botao (lua pra escuro | sol pra claro) | localStorage pra manter salvo a config ao trocar pagina
+                        if (body.classList.contains("dark-mode")) {
+                            botao.textContent = "🌙";
+                            localStorage.setItem("tema", "escuro");
+                        } else {
+                            botao.textContent = "☀️";
+                            localStorage.setItem("tema", "claro");
+                        }
+                        }   
+                        // Carrega tema do localStorage
+                        window.onload = function() {
+                            if (localStorage.getItem("tema") === "escuro") {
+                                document.body.classList.add("dark-mode");
+                                document.getElementById("theme-toggle").textContent = "🌙";
+                            }
+                        };
+
+
                 </script>
         
         </div>

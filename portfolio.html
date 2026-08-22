@@ -13,15 +13,18 @@
 
     <div id="header">
 
+        <!-- botão para mudar o tema, com emoji para declarar se dia ou noite-->
+        <button id="alternar" onclick="alternarTema()">☀️</button>
+
         <div id="nome">
             <h1>Maurício Luís Juchum</h1>
         </div>
     
         <div id="menu">
-            <a href="https://mjuchum.github.io/portfolio/index.html">Quem Sou</a>
-            <a href="https://mjuchum.github.io/portfolio/formacao.html">Formação</a>
-            <a href="https://mjuchum.github.io/portfolio/portfolio.html">Portfolio</a>
-            <a href="https://mjuchum.github.io/portfolio/contato.html">Contato</a>
+            <a href="index.html">Quem Sou</a>
+            <a href="formacao.html">Formação</a>
+            <a href="portfolio.html">Portfolio</a>
+            <a href="contato.html">Contato</a>
         </div>
 
     </div>
@@ -53,6 +56,34 @@
 
         </div>
     </div>
+
+    <script>
+    function alternarTema() {
+    const body = document.body;
+    const botao = document.getElementById("alternar");
+    
+    // Alterna a classe do tema escuro
+    body.classList.toggle("dark-mode");
+    
+    // Alterna o ícone do botao (lua pra escuro | sol pra claro) | localStorage pra manter salvo a config ao trocar pagina
+    if (body.classList.contains("dark-mode")) {
+        botao.textContent = "🌙";
+        localStorage.setItem("tema", "escuro");
+    } else {
+        botao.textContent = "☀️";
+        localStorage.setItem("tema", "claro");
+    }
+    }  
+        // Carrega a preferencia do localStorage
+    window.onload = function() {
+        if (localStorage.getItem("tema") === "escuro") {
+            document.body.classList.add("dark-mode");
+            document.getElementById("theme-toggle").textContent = "☀️";
+            alternarTema();
+        }
+    }; 
+    </script>
+
 </body>
 
 </html>
